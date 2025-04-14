@@ -1083,13 +1083,26 @@ document.querySelector("input").addEventListener("click", (e) => {
     spawnEnemies();
 });
 
+const arrowToWASD = {
+    ArrowUp: "w",
+    ArrowLeft: "a",
+    ArrowDown: "s",
+    ArrowRight: "d",
+};
+
 addEventListener("keydown", (e) => {
-    if (keys.hasOwnProperty(e.key)) keys[e.key] = true;
+    const key = arrowToWASD[e.key] || e.key;
+    if (keys.hasOwnProperty(key)) {
+        keys[key] = true;
+    }
     if (e.key === " ") shootLazer();
 });
 
 addEventListener("keyup", (e) => {
-    if (keys.hasOwnProperty(e.key)) keys[e.key] = false;
+    const key = arrowToWASD[e.key] || e.key;
+    if (keys.hasOwnProperty(key)) {
+        keys[key] = false;
+    }
 });
 
 canvas.addEventListener("click", (e) => {
